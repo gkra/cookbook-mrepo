@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of mrepo.
 
+## 0.0.2:
+
+- Added `configure` recipe
+- Updated repository config template to deal with multi-value
+  channels
+
 ## 0.0.1:
 
 * Initial release of mrepo
