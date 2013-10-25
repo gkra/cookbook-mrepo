@@ -65,43 +65,45 @@ default['mrepo']['main']['smtp_server'] = "localhost"
 
 # Examples of how to define repositories
 
-#### Example1: Using ISO files (put ISOs in /var/mrepo/dist1-i386), i386 is default arch
-#default['mrepo']['repos']['dist1'] = {
-#    'name'	=> "Distribution example $release ($arch)",
-#    'release'	=> "1",
-#    'metadata'	=> "apt",
-#    'iso'	=> "dist$release-$arch-disc?.iso",
-#    'updates'	=> "rsync://rsync.dist1.org/pub/dist/$release/$arch/$repo/"
-#}
-#
-#### Example2: Using multiple archs for a single definition
-#default['mrepo']['repos']['dist2']['name'] = "Distribution example $release ($arch)",
-#default['mrepo']['repos']['dist2']['release'] = "2",
-#default['mrepo']['repos']['dist2']['arch'] = "i386 i586 i686 x86_64",
-#default['mrepo']['repos']['dist2']['metadata'] = "repomd",
-#default['mrepo']['repos']['dist2']['os'] = "rsync://rsync.dist2.org/pub/dist/$release/$arch/$repo/",
-#default['mrepo']['repos']['dist2']['updates'] = "rsync://rsync.dist2.org/pub/dist/$release/$arch/$repo/"
-#
-#### Example3: Using extra repositories and updates from Example1
-#default['mrepo']['repos']['dist3'] = {
-#    'name'	=> "Distribution example $release ($arch)",
-#    'release'	=> "3",
-#    'arch'	=> "x86_64",
-#    'metadata'	=> "apt repomd",
-#    'iso'	=> "dist$release-$arch-disc?.iso",
-#    'os'	=> "rsync://rsync.dist3.org/pub/dist/$release/$arch/$repo/",
-#    'updates'	=> "mrepo://dist1-$arch/$repo/",
-#    'contrib'	=> "rsync://rsync.dist3.org/pub/dist/$release/$arch/$repo/"
-#}
-#
-#### Example4: Merging repositories
-#default['mrepo']['repos']['dist4'] = {
-#    'name'	=> "Distribution example $release ($arch)",
-#    'release'	=> "4",
-#    'metadata'	=> "apt repomd yum",
-#    'contrib'	=> "rsync://rsync.dist4.org/dist/$release/$arch/$repo/",
-#    'extras'	=> "rsync://rsync.dist4.org/dist/$release/$arch/$repo/",
-#    'merge'	=> [ "mrepo://$nick/contrib/", "mrepo://$nick/extras/" ]
-#}
+### Example1: Using ISO files (put ISOs in /var/mrepo/dist1-i386), i386 is default arch
+default['mrepo']['repos']['dist1']'name'] = "Distribution example $release ($arch)"
+default['mrepo']['repos']['dist1']'release'] = "1"
+default['mrepo']['repos']['dist1']'metadata'] = "apt"
+default['mrepo']['repos']['dist1']['chennels'] = {
+    'iso'	=> "dist$release-$arch-disc?.iso",
+    'updates'	=> "rsync://rsync.dist1.org/pub/dist/$release/$arch/$repo/"
+}
+
+### Example2: Using multiple archs for a single definition
+default['mrepo']['repos']['dist2']['name'] = "Distribution example $release ($arch)",
+default['mrepo']['repos']['dist2']['release'] = "2",
+default['mrepo']['repos']['dist2']['arch'] = "i386 i586 i686 x86_64",
+default['mrepo']['repos']['dist2']['metadata'] = "repomd",
+default['mrepo']['repos']['dist2']['channels']['os'] = "rsync://rsync.dist2.org/pub/dist/$release/$arch/$repo/",
+default['mrepo']['repos']['dist2']['channels']['updates'] = "rsync://rsync.dist2.org/pub/dist/$release/$arch/$repo/"
+
+### Example3: Using extra repositories and updates from Example1
+default['mrepo']['repos']['dist3'] = {
+    'name'	=> "Distribution example $release ($arch)",
+    'release'	=> "3",
+    'arch'	=> "x86_64",
+    'metadata'	=> "apt repomd",
+    'channels'	=> {
+	'iso'		=> "dist$release-$arch-disc?.iso",
+	'os'		=> "rsync://rsync.dist3.org/pub/dist/$release/$arch/$repo/",
+	'updates'	=> "mrepo://dist1-$arch/$repo/",
+	'contrib'	=> "rsync://rsync.dist3.org/pub/dist/$release/$arch/$repo/"
+    }
+}
+
+### Example4: Merging repositories
+default['mrepo']['repos']['dist4']'name'] = "Distribution example $release ($arch)"
+default['mrepo']['repos']['dist4']'release'] = "4"
+default['mrepo']['repos']['dist4']'metadata'] = "apt repomd yum"
+default['mrepo']['repos']['dist4']['channels'] = {
+    'contrib'	=> "rsync://rsync.dist4.org/dist/$release/$arch/$repo/",
+    'extras'	=> "rsync://rsync.dist4.org/dist/$release/$arch/$repo/",
+    'merge'	=> [ "mrepo://$nick/contrib/", "mrepo://$nick/extras/" ]
+}
 
 # vim: shiftwidth=4

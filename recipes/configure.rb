@@ -17,13 +17,17 @@ template "mrepo_conf" do
 end
 
 # Create the repository configuration files
-node['mrepo']['repos'].each do |repo|
-    template "mrepo_#{repo}_conf" do
-	path "/etc/mrepo.conf.d/#{repo}.conf"
+node['mrepo']['repos'].each do |reponame, repodata|
+    template "/etc/mrepo.conf.d/#{reponame}.conf" do
 	source "mrepo_repo.conf.erb"
 	owner "root"
 	group "root"
 	mode "0644"
+	variables(
+	    :name => reponame,
+	    :repo => repodata
+	)
+	action :create
     end
 end
 
