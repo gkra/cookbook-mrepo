@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of mrepo.
 
+## 0.0.3:
+
+- Updated config examples
+- Fixed templates
+- Added `mrepo::configure` as default action 
+
 ## 0.0.2:
 
 - Added `configure` recipe
