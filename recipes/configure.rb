@@ -8,12 +8,12 @@
 #
 
 # Create the main configuration file
-template "mrepo_conf" do
-    path "/etc/mrepo.conf"
+template "/etc/mrepo_conf" do
     source "mrepo.conf.erb"
     owner "root"
     group "root"
     mode "0644"
+    action :create
 end
 
 # Create the repository configuration files
@@ -29,5 +29,14 @@ node['mrepo']['repos'].each do |reponame, repodata|
 	)
 	action :create
     end
+end
+
+# Create the apache configuration file
+template "/etc/httpd/conf.d/mrepo.conf" do
+    source "apache_mrepo.conf.erb"
+    owner "root"
+    group "root"
+    mode "0644"
+    action :create
 end
 
