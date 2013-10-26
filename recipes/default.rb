@@ -6,3 +6,8 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+
+# For now, all we do is configure mrepo
+include_recipe "mrepo::configure"
+
+
