@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of mrepo.
 
+## 0.0.4:
+
+- ensure /etc/mrepo.conf.d exists before trying to put files in it
+
 ## 0.0.3:
 
 - Updated config examples
