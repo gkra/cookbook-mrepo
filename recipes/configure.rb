@@ -38,6 +38,14 @@ node['mrepo']['repos'].each do |reponame, repodata|
   end
 end
 
+# Make sure the apache configuration directory exists (?)
+# What the heck removed this? apache2 cookbook?
+directory '/etc/httpd/conf.d' do
+  owner 'root'
+  group 'root'
+  mode  '0755'
+end
+
 # Create the apache configuration file
 template '/etc/httpd/conf.d/mrepo.conf' do
   source 'apache_mrepo.conf.erb'
