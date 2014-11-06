@@ -14,6 +14,11 @@ template "/etc/mrepo_conf" do
     group "root"
     mode "0644"
     action :create
+# Make sure the configuration directory exists
+directory '/etc/mrepo.conf.d' do
+  owner 'root'
+  group 'root'
+  mode  '0755'
 end
 
 # Create the repository configuration files
