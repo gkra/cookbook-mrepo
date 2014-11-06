@@ -1,3 +1,25 @@
 *~
 .DS_Store
 .*.swp
+.vagrant
+*#
+.#*
+\#*#
+.*.sw[a-z]
+*.un~
+pkg/
+
+# Berkshelf
+Berksfile.lock
+/cookbooks
+
+# Bundler
+Gemfile.lock
+bin/*
+.bundle/*
+
+.kitchen/*
+.vendor/*
+vendor/*
+tmp/*
+
